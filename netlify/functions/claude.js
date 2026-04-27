@@ -17,9 +17,7 @@ exports.handler = async (event) => {
 
   try {
     const body = JSON.parse(event.body);
-
-    // Forzar modelo correcto
-    body.model = 'claude-3-5-haiku-20241022';
+    body.model = 'claude-3-haiku-20240307';
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -32,10 +30,7 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
-
-    // Log para debug
-    console.log('API response status:', response.status);
-    console.log('API response:', JSON.stringify(data).substring(0, 200));
+    console.log('Status:', response.status, JSON.stringify(data).substring(0, 200));
 
     return {
       statusCode: 200,
