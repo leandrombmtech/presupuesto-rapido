@@ -107,4 +107,19 @@ Añade al final del archivo CLAUDE.md, sin borrar nada, el siguiente contenido:
 - Nunca poner API keys en el código — siempre en variables de entorno de Netlify
 - Mantener todo en un solo index.html hasta que la complejidad lo justifique
 - Cada función nueva va en netlify/functions/ como archivo separado
+
+## Protocolo de trabajo
+- Al inicio de cada sesión: leer CLAUDE.md y resumir estado actual + proponer siguiente paso
+- Al final de cada sesión: actualizar CLAUDE.md con lo hecho, lo pendiente y decisiones tomadas
+- Antes de tocar código: explicar qué vas a hacer y por qué
+- Después de cada cambio: confirmar que funciona en presupuestorapido.pro
+- Si algo falla: documentarlo en CLAUDE.md para no repetir el error
+
+## Historial de sesiones
+### Sesión 1 — 27 Abril 2026
+- Instalado Claude Code y conectado al proyecto
+- Configurado auto-commit y push a GitHub
+- CLAUDE.md creado con contexto completo del negocio y técnico
+- Web funcionando en presupuestorapido.pro con IA, PDF y Stripe
+- Próximo paso: implementar Supabase Auth (login/registro)
 - Al inicio de cada sesión revisar este archivo y preguntar qué toca hacer
