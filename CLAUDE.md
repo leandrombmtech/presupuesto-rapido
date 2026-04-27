@@ -7,6 +7,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Idioma
 Responde siempre en español de España. Nunca uses inglés salvo para nombres técnicos de código (variables, funciones, comandos).
 
+## Sobre el usuario
+- El usuario se llama Leandro
+- Trátale siempre de tú y llámale Leandro
+- Es el fundador y único desarrollador de PresupuestoRápido
+- No tiene experiencia previa en programación pero aprende rápido
+- Prefiere explicaciones paso a paso con contexto de por qué se hace cada cosa
+
 ## What this is
 
 PresupuestoRápido is a single-page web app for Spanish self-employed tradespeople (fontaneros, electricistas, etc.) to generate professional PDF quotes in seconds. It is deployed on Netlify.
