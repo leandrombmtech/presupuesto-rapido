@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PresupuestoRápido — Presupuestos profesionales en 30 segundos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #1a1a2e;
+    --accent: #e8632a;
+    --accent2: #f5a623;
+    --light: #faf8f5;
+    --muted: #6b6b6b;
+    --border: #e8e2d9;
+    --white: #ffffff;
+    --success: #2d7a4f;
+    --card-bg: #ffffff;
+    --radius: 12px;
+    --shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--light); color: var(--brand); line-height: 1.6; }
+  
+  /* NAV */
+  nav { background: var(--brand); padding: 0 5%; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Fraunces', serif; font-size: 22px; color: var(--white); font-weight: 700; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+  .nav-links a:hover { color: white; }
+  .btn-nav { background: var(--accent); color: white !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 14px !important; }
+  .btn-nav:hover { background: #d4541f !important; }
+
+  /* SECTIONS */
+  section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+
+  /* HERO */
+  .hero { padding: 100px 5% 80px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: #fff3ed; border: 1px solid #fad4b8; color: var(--accent); padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+  .hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  h1 { font-family: 'Fraunces', serif; font-size: 54px; font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
+  h1 em { color: var(--accent); font-style: italic; }
+  .hero-sub { font-size: 18px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: white; padding: 16px 32px; border-radius: var(--radius); font-weight: 700; font-size: 17px; text-decoration: none; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; }
+  .btn-primary:hover { background: #d4541f; transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--brand); padding: 16px 32px; border-radius: var(--radius); font-weight: 600; font-size: 17px; text-decoration: none; border: 2px solid var(--brand); display: inline-block; transition: all 0.2s; cursor: pointer; }
+  .btn-secondary:hover { background: var(--brand); color: white; }
+  .hero-stats { display: flex; gap: 32px; margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--border); }
+  .stat { text-align: left; }
+  .stat-n { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 900; color: var(--accent); }
+  .stat-l { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+  /* HERO VISUAL */
+  .hero-visual { position: relative; }
+  .mockup-card { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.12); padding: 28px; border: 1px solid var(--border); }
+  .mockup-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .mockup-logo { width: 36px; height: 36px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 14px; }
+  .mockup-title { font-weight: 700; font-size: 15px; }
+  .mockup-sub { font-size: 12px; color: var(--muted); }
+  .mockup-badge { margin-left: auto; background: #e8f5ee; color: var(--success); padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 600; }
+  .mockup-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f5; font-size: 14px; }
+  .mockup-row:last-child { border-bottom: none; }
+  .mockup-row span:last-child { font-weight: 600; color: var(--brand); }
+  .mockup-total { background: var(--brand); color: white; padding: 16px; border-radius: var(--radius); display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+  .mockup-total .label { font-size: 14px; opacity: 0.8; }
+  .mockup-total .amount { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 900; }
+  .floating-pill { position: absolute; background: white; border-radius: 100px; padding: 10px 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .fp-1 { top: -16px; right: -16px; color: var(--success); }
+  .fp-2 { bottom: 24px; left: -24px; color: var(--accent); }
+  .fp-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .fp-1 .fp-dot { background: var(--success); }
+  .fp-2 .fp-dot { background: var(--accent); }
+
+  /* HOW IT WORKS */
+  .how-section { background: var(--brand); border-radius: 24px; padding: 80px; margin: 0 5%; max-width: 1200px; }
+  .how-section h2 { font-family: 'Fraunces', serif; font-size: 42px; color: white; text-align: center; margin-bottom: 8px; }
+  .how-section .sub { text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 60px; font-size: 17px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .step { text-align: center; }
+  .step-n { width: 56px; height: 56px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 24px; font-weight: 900; color: white; margin: 0 auto 20px; }
+  .step h3 { font-size: 18px; color: white; font-weight: 700; margin-bottom: 10px; }
+  .step p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; }
+  .step-arrow { display: flex; align-items: center; justify-content: center; padding-top: 28px; color: rgba(255,255,255,0.3); font-size: 24px; }
+
+  /* APP / TOOL */
+  .app-section { padding: 80px 0; }
+  .app-wrap { background: white; border-radius: 24px; box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+  .app-header { background: var(--brand); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .app-header-title { font-family: 'Fraunces', serif; color: white; font-size: 20px; font-weight: 700; }
+  .app-tabs { display: flex; gap: 4px; }
+  .tab { padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; color: rgba(255,255,255,0.6); transition: all 0.2s; border: none; background: transparent; }
+  .tab.active { background: var(--accent); color: white; }
+  .tab:hover:not(.active) { background: rgba(255,255,255,0.1); color: white; }
+  .app-body { padding: 32px; display: none; }
+  .app-body.active { display: block; }
+
+  /* FORM */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+  label { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  input, select, textarea { padding: 12px 16px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--brand); background: var(--light); transition: border 0.2s; outline: none; }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); background: white; }
+  textarea { resize: vertical; min-height: 80px; }
+  .form-section-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: var(--brand); margin: 24px 0 16px; display: flex; align-items: center; gap: 10px; }
+  .form-section-title::before { content: ''; display: block; width: 4px; height: 20px; background: var(--accent); border-radius: 2px; }
+
+  /* LINE ITEMS */
+  .items-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .items-table th { text-align: left; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; border-bottom: 2px solid var(--border); }
+  .items-table td { padding: 8px 12px; border-bottom: 1px solid #f0ebe3; }
+  .items-table td input { background: transparent; border: 1px solid transparent; padding: 8px; width: 100%; }
+  .items-table td input:focus { background: white; border-color: var(--accent); border-radius: 8px; }
+  .btn-add-item { background: transparent; border: 1.5px dashed var(--border); color: var(--muted); padding: 10px; border-radius: var(--radius); cursor: pointer; font-size: 14px; width: 100%; margin-bottom: 24px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-add-item:hover { border-color: var(--accent); color: var(--accent); background: #fff3ed; }
+  .btn-del { background: none; border: none; color: #ccc; cursor: pointer; font-size: 18px; padding: 4px 8px; border-radius: 6px; }
+  .btn-del:hover { color: #e74c3c; background: #fff0f0; }
+
+  /* TOTALS */
+  .totals-box { background: var(--light); border-radius: var(--radius); padding: 20px 24px; border: 1px solid var(--border); }
+  .total-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 15px; color: var(--muted); }
+  .total-row.final { border-top: 2px solid var(--border); margin-top: 8px; padding-top: 14px; font-size: 22px; font-weight: 700; color: var(--brand); font-family: 'Fraunces', serif; }
+
+  /* ACTIONS */
+  .actions-bar { display: flex; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .btn-action { padding: 14px 28px; border-radius: var(--radius); font-weight: 700; font-size: 15px; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .btn-generate { background: var(--accent); color: white; }
+  .btn-generate:hover { background: #d4541f; }
+  .btn-ai { background: var(--brand); color: white; }
+  .btn-ai:hover { background: #2d2d50; }
+  .btn-clear { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
+  .btn-clear:hover { border-color: var(--brand); color: var(--brand); }
+  .btn-whatsapp { background: #25D366; color: white; }
+  .btn-whatsapp:hover { background: #1da851; }
+
+  /* AI ASSISTANT */
+  .ai-box { background: linear-gradient(135deg, #fff8f5 0%, #fef3e8 100%); border: 1.5px solid #fad4b8; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .ai-box-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .ai-icon { width: 40px; height: 40px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; }
+  .ai-box-header h3 { font-size: 16px; font-weight: 700; }
+  .ai-box-header p { font-size: 13px; color: var(--muted); }
+  .ai-prompt { display: flex; gap: 12px; }
+  .ai-prompt input { flex: 1; }
+  .btn-ask { background: var(--accent); color: white; border: none; padding: 12px 24px; border-radius: var(--radius); font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background 0.2s; }
+  .btn-ask:hover { background: #d4541f; }
+  .ai-response { margin-top: 16px; background: white; border-radius: var(--radius); padding: 16px; border: 1px solid var(--border); font-size: 14px; line-height: 1.7; display: none; }
+  .ai-response.visible { display: block; }
+  .ai-thinking { display: flex; align-items: center; gap: 8px; color: var(--accent); font-size: 14px; font-weight: 600; }
+  .dot-anim span { animation: blink 1.4s infinite both; font-size: 20px; }
+  .dot-anim span:nth-child(2) { animation-delay: 0.2s; }
+  .dot-anim span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 0%,80%,100%{opacity:0} 40%{opacity:1} }
+
+  /* PDF PREVIEW */
+  #pdf-preview { display: none; }
+  #pdf-preview.active { display: block; }
+  .pdf-frame { background: white; max-width: 800px; margin: 0 auto; padding: 60px; box-shadow: 0 4px 40px rgba(0,0,0,0.12); border-radius: 8px; }
+  .pdf-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 3px solid var(--brand); }
+  .pdf-logo { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 900; color: var(--brand); }
+  .pdf-logo small { display: block; font-size: 12px; font-weight: 400; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+  .pdf-info { text-align: right; }
+  .pdf-info h2 { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 900; color: var(--accent); }
+  .pdf-info p { font-size: 13px; color: var(--muted); }
+  .pdf-parties { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .pdf-party h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+  .pdf-party p { font-size: 14px; line-height: 1.7; }
+  .pdf-party strong { font-size: 16px; font-weight: 700; }
+  .pdf-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+  .pdf-table th { background: var(--brand); color: white; padding: 12px 16px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .pdf-table th:last-child { text-align: right; }
+  .pdf-table td { padding: 14px 16px; border-bottom: 1px solid #f0ebe3; font-size: 14px; }
+  .pdf-table td:last-child { text-align: right; font-weight: 600; }
+  .pdf-table tr:nth-child(even) td { background: #fafaf8; }
+  .pdf-totals { margin-left: auto; width: 300px; }
+  .pdf-total-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .pdf-total-row.final { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 900; color: var(--brand); border-top: 3px solid var(--brand); border-bottom: none; padding-top: 12px; }
+  .pdf-notes { background: var(--light); border-radius: var(--radius); padding: 20px; margin-top: 32px; }
+  .pdf-notes h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+  .pdf-notes p { font-size: 13px; color: #555; line-height: 1.7; }
+  .pdf-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .pdf-actions { display: flex; gap: 12px; margin-bottom: 24px; }
+
+  /* PRICING */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .price-card { background: white; border-radius: 20px; padding: 32px; border: 2px solid var(--border); position: relative; }
+  .price-card.popular { border-color: var(--accent); }
+  .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 4px 20px; border-radius: 100px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .price-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .price-card .price { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 900; margin: 16px 0 4px; }
+  .price-card .price sup { font-size: 20px; vertical-align: super; }
+  .price-card .price-note { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .price-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .price-features li::before { content: '✓'; color: var(--success); font-weight: 700; flex-shrink: 0; }
+  .price-features li.no::before { content: '✗'; color: #ccc; }
+  .price-features li.no { color: var(--muted); }
+  .btn-plan { width: 100%; padding: 14px; border-radius: var(--radius); font-weight: 700; font-size: 15px; cursor: pointer; border: 2px solid var(--brand); background: transparent; color: var(--brand); font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .btn-plan:hover, .price-card.popular .btn-plan { background: var(--accent); border-color: var(--accent); color: white; }
+
+  /* TESTIMONIALS */
+  .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .testi { background: white; border-radius: 20px; padding: 28px; border: 1px solid var(--border); }
+  .testi-stars { color: var(--accent2); font-size: 18px; margin-bottom: 16px; }
+  .testi p { font-size: 15px; line-height: 1.7; color: #333; margin-bottom: 20px; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--brand); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; }
+  .testi-name { font-weight: 700; font-size: 14px; }
+  .testi-role { font-size: 13px; color: var(--muted); }
+
+  /* FAQ */
+  .faq-list { max-width: 700px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: white; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
+  .faq-q { padding: 20px 24px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
+  .faq-q .icon { color: var(--accent); font-size: 20px; transition: transform 0.3s; }
+  .faq-q.open .icon { transform: rotate(45deg); }
+  .faq-a { padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .faq-a.open { max-height: 200px; padding: 0 24px 20px; }
+
+  /* CTA BANNER */
+  .cta-banner { background: var(--accent); border-radius: 24px; padding: 60px; text-align: center; margin: 0 5%; max-width: 1200px; }
+  .cta-banner h2 { font-family: 'Fraunces', serif; font-size: 42px; color: white; margin-bottom: 16px; }
+  .cta-banner p { color: rgba(255,255,255,0.85); font-size: 18px; margin-bottom: 32px; }
+  .btn-white { background: white; color: var(--accent); padding: 16px 40px; border-radius: var(--radius); font-weight: 800; font-size: 18px; text-decoration: none; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+  /* FOOTER */
+  footer { background: var(--brand); color: rgba(255,255,255,0.6); text-align: center; padding: 40px 5%; font-size: 14px; margin-top: 80px; }
+  footer strong { color: white; }
+
+  /* UTILS */
+  .section-label { font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  h2 { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+  .section-sub { font-size: 18px; color: var(--muted); max-width: 550px; }
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin: 0 auto; }
+  .tag { display: inline-block; background: #fff3ed; color: var(--accent); padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; border: 1px solid #fad4b8; }
+  
+  /* Notification */
+  .notif { position: fixed; bottom: 24px; right: 24px; background: var(--brand); color: white; padding: 16px 24px; border-radius: var(--radius); font-size: 15px; font-weight: 500; box-shadow: 0 8px 32px rgba(0,0,0,0.2); z-index: 999; display: flex; align-items: center; gap: 10px; transform: translateY(100px); opacity: 0; transition: all 0.4s cubic-bezier(.17,.67,.29,1.2); }
+  .notif.show { transform: translateY(0); opacity: 1; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 30px; }
+    .steps, .pricing-grid, .testimonials { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .how-section { padding: 48px 32px; }
+    .cta-banner { padding: 48px 32px; }
+    .hero-stats { flex-wrap: wrap; }
+    .pdf-frame { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Presupuesto<span>Rápido</span></div>
+  <div class="nav-links">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#herramienta">Herramienta</a>
+    <a href="#precios">Precios</a>
+    <a href="#herramienta" class="btn-nav">Crear presupuesto gratis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-badge">✦ Nuevo — Ahora con IA integrada</div>
+    <h1>Presupuestos <em>profesionales</em> en 30 segundos</h1>
+    <p class="hero-sub">Para fontaneros, electricistas, pintores y cualquier autónomo de oficios. Genera PDFs profesionales, envíalos por WhatsApp y cierra más trabajos.</p>
+    <div class="hero-cta">
+      <a href="#herramienta" class="btn-primary">Crear presupuesto gratis →</a>
+      <a href="#como-funciona" class="btn-secondary">Ver cómo funciona</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n">30 seg</div><div class="stat-l">por presupuesto</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">profesional</div></div>
+      <div class="stat"><div class="stat-n">0€</div><div class="stat-l">para empezar</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="mockup-card">
+      <div class="mockup-header">
+        <div class="mockup-logo">PR</div>
+        <div><div class="mockup-title">Fontanería García</div><div class="mockup-sub">Presupuesto #0042</div></div>
+        <div class="mockup-badge">✓ Enviado</div>
+      </div>
+      <div class="mockup-row"><span>Cambio de tuberías PVC</span><span>280,00 €</span></div>
+      <div class="mockup-row"><span>Mano de obra (4h)</span><span>160,00 €</span></div>
+      <div class="mockup-row"><span>Materiales y juntas</span><span>45,00 €</span></div>
+      <div class="mockup-row"><span>Desplazamiento</span><span>25,00 €</span></div>
+      <div class="mockup-total">
+        <div><div class="label">TOTAL con IVA</div></div>
+        <div class="amount">618,30 €</div>
+      </div>
+    </div>
+    <div class="floating-pill fp-1"><div class="fp-dot"></div>PDF generado en 8 seg</div>
+    <div class="floating-pill fp-2"><div class="fp-dot"></div>Enviado por WhatsApp</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-section" id="como-funciona">
+  <h2>Así de sencillo</h2>
+  <p class="sub">Sin formación, sin complicaciones. En 3 pasos tienes tu presupuesto listo.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">1</div>
+      <h3>Rellena los datos</h3>
+      <p>Nombre del cliente, trabajo a realizar y los conceptos con sus precios. Tan sencillo como un WhatsApp.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">2</div>
+      <h3>La IA lo perfecciona</h3>
+      <p>Nuestra IA revisa el presupuesto, sugiere descripciones profesionales y calcula el IVA automáticamente.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">3</div>
+      <h3>Envíalo en un click</h3>
+      <p>Descarga el PDF profesional o envíalo directamente por WhatsApp, email o compártelo con un enlace.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL -->
+<section class="app-section" id="herramienta">
+  <div class="text-center" style="margin-bottom: 48px;">
+    <div class="section-label">Herramienta gratuita</div>
+    <h2>Crea tu presupuesto ahora</h2>
+    <p class="section-sub">Sin registro. Sin tarjeta de crédito. Solo tus datos y tu presupuesto listo.</p>
+  </div>
+  <div class="app-wrap">
+    <div class="app-header">
+      <div class="app-header-title">✦ PresupuestoRápido — Editor</div>
+      <div class="app-tabs">
+        <button class="tab active" onclick="switchTab('form')">📝 Crear</button>
+        <button class="tab" onclick="switchTab('preview')">👁 Previsualizar</button>
+      </div>
+    </div>
+    
+    <!-- FORM TAB -->
+    <div class="app-body active" id="tab-form">
+      
+      <!-- AI BOX -->
+      <div class="ai-box">
+        <div class="ai-box-header">
+          <div class="ai-icon">✦</div>
+          <div>
+            <h3>Asistente IA integrado</h3>
+            <p>Pregunta cómo redactar conceptos, calcula materiales o mejora tu presupuesto</p>
+          </div>
+        </div>
+        <div class="ai-prompt">
+          <input type="text" id="ai-input" placeholder="Ej: ¿Cómo redacto la descripción de un cambio de caldera de gas?" />
+          <button class="btn-ask" onclick="askAI()">Preguntar IA ✦</button>
+        </div>
+        <div class="ai-response" id="ai-response"></div>
+      </div>
+
+      <!-- TUS DATOS -->
+      <div class="form-section-title">Tus datos de empresa</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Tu nombre / empresa</label>
+          <input type="text" id="biz-name" placeholder="Fontanería García, S.L." />
+        </div>
+        <div class="form-group">
+          <label>NIF / CIF</label>
+          <input type="text" id="biz-nif" placeholder="12345678A" />
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" id="biz-phone" placeholder="612 345 678" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="biz-email" placeholder="info@tucorreo.es" />
+        </div>
+        <div class="form-group full">
+          <label>Dirección</label>
+          <input type="text" id="biz-address" placeholder="Calle Mayor 12, 03203 Elche, Alicante" />
+        </div>
+      </div>
+
+      <!-- CLIENTE -->
+      <div class="form-section-title">Datos del cliente</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nombre del cliente</label>
+          <input type="text" id="cli-name" placeholder="Juan Martínez López" />
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" id="cli-phone" placeholder="698 765 432" />
+        </div>
+        <div class="form-group full">
+          <label>Dirección de la obra</label>
+          <input type="text" id="cli-address" placeholder="Calle Colón 5, 3º B, Elche" />
+        </div>
+      </div>
+
+      <!-- DETALLES -->
+      <div class="form-section-title">Detalles del presupuesto</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Número de presupuesto</label>
+          <input type="text" id="pres-num" placeholder="2024-001" value="2024-001" />
+        </div>
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="date" id="pres-date" />
+        </div>
+        <div class="form-group">
+          <label>Validez del presupuesto</label>
+          <select id="pres-valid">
+            <option>15 días</option>
+            <option>30 días</option>
+            <option selected>2 semanas</option>
+            <option>1 mes</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>IVA aplicable</label>
+          <select id="pres-iva" onchange="updateTotals()">
+            <option value="21">21% — General</option>
+            <option value="10">10% — Reducido (reformas)</option>
+            <option value="0">0% — Sin IVA</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Descripción del trabajo</label>
+          <textarea id="pres-desc" placeholder="Reparación de instalación de fontanería en baño principal..."></textarea>
+        </div>
+      </div>
+
+      <!-- PARTIDAS -->
+      <div class="form-section-title">Partidas / Conceptos</div>
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th style="width:40%">Descripción</th>
+            <th style="width:15%">Unidades</th>
+            <th style="width:20%">Precio unitario</th>
+            <th style="width:15%">Subtotal</th>
+            <th style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody id="items-body"></tbody>
+      </table>
+      <button class="btn-add-item" onclick="addItem()">+ Añadir concepto</button>
+
+      <!-- TOTALS -->
+      <div class="totals-box">
+        <div class="total-row"><span>Base imponible</span><span id="t-base">0,00 €</span></div>
+        <div class="total-row"><span>IVA (<span id="t-iva-pct">21</span>%)</span><span id="t-iva">0,00 €</span></div>
+        <div class="total-row final"><span>TOTAL</span><span id="t-total">0,00 €</span></div>
+      </div>
+
+      <!-- NOTES -->
+      <div class="form-grid" style="margin-top:24px">
+        <div class="form-group full">
+          <label>Condiciones / Notas (opcional)</label>
+          <textarea id="pres-notes" placeholder="Pago a la entrega de obra. Garantía de 1 año en materiales instalados..."></textarea>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        <button class="btn-action btn-generate" onclick="generatePDF()">📄 Generar PDF</button>
+        <button class="btn-action btn-whatsapp" onclick="sendWhatsApp()">📱 Enviar por WhatsApp</button>
+        <button class="btn-action btn-clear" onclick="clearForm()">✕ Limpiar</button>
+      </div>
+    </div>
+
+    <!-- PREVIEW TAB -->
+    <div class="app-body" id="tab-preview">
+      <div id="pdf-preview">
+        <div class="pdf-actions">
+          <button class="btn-action btn-generate" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+          <button class="btn-action btn-whatsapp" onclick="sendWhatsApp()">📱 Compartir por WhatsApp</button>
+          <button class="btn-action btn-clear" onclick="switchTab('form')">← Volver a editar</button>
+        </div>
+        <div class="pdf-frame" id="pdf-content">
+          <!-- Generated by JS -->
+        </div>
+      </div>
+      <div id="preview-empty" style="text-align:center;padding:60px 0;color:var(--muted);">
+        <div style="font-size:48px;margin-bottom:16px;">📄</div>
+        <p style="font-size:17px;margin-bottom:20px;">Rellena los datos y pulsa "Generar PDF" para ver la previsualización</p>
+        <button class="btn-primary" onclick="switchTab('form')">← Ir al editor</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="precios">
+  <div class="text-center">
+    <div class="section-label">Precios</div>
+    <h2>Sencillo y sin sorpresas</h2>
+    <p class="section-sub">Empieza gratis hoy mismo. Actualiza cuando necesites más.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Gratuito</h3>
+      <div class="price"><sup>€</sup>0</div>
+      <div class="price-note">Para siempre</div>
+      <ul class="price-features">
+        <li>3 presupuestos al mes</li>
+        <li>PDF básico con tu logo</li>
+        <li>Envío por WhatsApp</li>
+        <li class="no">Sin marca de agua (plan Pro)</li>
+        <li class="no">Asistente IA ilimitado</li>
+        <li class="no">Historial de presupuestos</li>
+      </ul>
+      <button class="btn-plan" onclick="notify('¡Estás usando el plan gratuito!')">Usar gratis</button>
+    </div>
+    <div class="price-card popular">
+      <div class="popular-badge">⭐ Más popular</div>
+      <h3>Profesional</h3>
+      <div class="price"><sup>€</sup>7</div>
+      <div class="price-note">al mes · cancela cuando quieras</div>
+      <ul class="price-features">
+        <li>Presupuestos ilimitados</li>
+        <li>PDF sin marca de agua</li>
+        <li>Asistente IA ilimitado</li>
+        <li>Historial y numeración auto</li>
+        <li>Enlace de seguimiento</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+      <button class="btn-plan" onclick="notify('¡Próximamente! Déjanos tu email.')">Empezar 14 días gratis</button>
+    </div>
+    <div class="price-card">
+      <h3>Empresa</h3>
+      <div class="price"><sup>€</sup>19</div>
+      <div class="price-note">al mes · hasta 5 usuarios</div>
+      <ul class="price-features">
+        <li>Todo lo del plan Pro</li>
+        <li>5 usuarios / empleados</li>
+        <li>Informes mensuales</li>
+        <li>Firma digital incluida</li>
+        <li>Integración con email</li>
+        <li>Soporte prioritario</li>
+      </ul>
+      <button class="btn-plan" onclick="notify('¡Próximamente! Déjanos tu email.')">Contactar</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="text-center">
+    <div class="section-label">Testimonios</div>
+    <h2>Lo que dicen nuestros clientes</h2>
+  </div>
+  <div class="testimonials">
+    <div class="testi">
+      <div class="testi-stars">★★★★★</div>
+      <p>"Antes tardaba 20 minutos en hacer un presupuesto en Word. Ahora en 2 minutos tengo el PDF listo y lo mando por WhatsApp. He cerrado 3 trabajos más este mes."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MG</div>
+        <div><div class="testi-name">Manuel García</div><div class="testi-role">Fontanero, Alicante</div></div>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="testi-stars">★★★★★</div>
+      <p>"El cliente ve un presupuesto profesional y ya no me regatea tanto el precio. La herramienta da imagen de empresa seria. Totalmente recomendable para autónomos."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">CR</div>
+        <div><div class="testi-name">Carlos Ruiz</div><div class="testi-role">Electricista, Valencia</div></div>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="testi-stars">★★★★★</div>
+      <p>"Lo de la IA es increíble. Le pregunté cómo describir una reforma de cocina y me dio exactamente el texto que necesitaba. Ya no improviso los presupuestos."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AM</div>
+        <div><div class="testi-name">Ana Martínez</div><div class="testi-role">Pintora, Murcia</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="text-center">
+    <div class="section-label">FAQ</div>
+    <h2>Preguntas frecuentes</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>¿Necesito saber de tecnología para usarlo?</span><span class="icon">+</span></div>
+      <div class="faq-a">No. Si sabes usar WhatsApp, sabes usar PresupuestoRápido. Rellena los campos como si fuera un formulario y listo. No hay que instalar nada.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>¿El PDF se puede personalizar con mi logo?</span><span class="icon">+</span></div>
+      <div class="faq-a">Sí, en el plan Profesional puedes añadir tu logo y personalizar los colores del PDF para que coincida con tu marca. En el plan gratuito aparece el logo de PresupuestoRápido.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>¿Mis datos están seguros?</span><span class="icon">+</span></div>
+      <div class="faq-a">Sí. Los presupuestos del plan gratuito se generan localmente en tu navegador sin guardar datos en servidores. El plan Pro usa cifrado SSL y cumple con el RGPD europeo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>¿Puedo cancelar la suscripción cuando quiera?</span><span class="icon">+</span></div>
+      <div class="faq-a">Por supuesto. Sin permanencia, sin penalizaciones. Cancelas en 1 click desde tu panel de cuenta y no se renueva el siguiente mes.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>¿Funciona para cualquier tipo de oficio?</span><span class="icon">+</span></div>
+      <div class="faq-a">Sí. Fontaneros, electricistas, pintores, carpinteros, instaladores, reformistas, jardineros, técnicos... Cualquier autónomo que necesite enviar presupuestos puede usarlo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Cierra más trabajos hoy mismo</h2>
+  <p>Empieza gratis, sin tarjeta de crédito. Tu primer presupuesto profesional en 30 segundos.</p>
+  <a href="#herramienta" class="btn-white">Crear mi primer presupuesto →</a>
+</div>
+
+<footer>
+  <p><strong>PresupuestoRápido</strong> — Herramienta para autónomos de oficios en España</p>
+  <p style="margin-top:8px;">Hecho con ♥ en España · <a href="#" style="color:rgba(255,255,255,0.5)">Privacidad</a> · <a href="#" style="color:rgba(255,255,255,0.5)">Términos</a></p>
+</footer>
+
+<div class="notif" id="notif">✓ <span id="notif-text"></span></div>
+
+<script>
+// ── INIT ──
+document.getElementById('pres-date').value = new Date().toISOString().split('T')[0];
+let items = [];
+addItem(); addItem(); addItem();
+
+// ── TABS ──
+function switchTab(t) {
+  document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('.app-body').forEach(e => e.classList.remove('active'));
+  document.getElementById('tab-' + t).classList.add('active');
+  document.querySelector(`.tab[onclick="switchTab('${t}')"]`).classList.add('active');
+}
+
+// ── ITEMS ──
+function addItem() {
+  const id = Date.now();
+  items.push({ id, desc: '', qty: 1, price: 0 });
+  renderItems();
+}
+
+function removeItem(id) {
+  items = items.filter(i => i.id !== id);
+  renderItems();
+}
+
+function renderItems() {
+  const tbody = document.getElementById('items-body');
+  tbody.innerHTML = items.map(item => `
+    <tr>
+      <td><input type="text" value="${item.desc}" placeholder="Ej: Mano de obra fontanería" onchange="updateItem(${item.id},'desc',this.value)" oninput="updateItem(${item.id},'desc',this.value)" /></td>
+      <td><input type="number" value="${item.qty}" min="0" step="0.5" style="width:70px" onchange="updateItem(${item.id},'qty',this.value)" oninput="updateItem(${item.id},'qty',this.value)" /></td>
+      <td><input type="number" value="${item.price}" min="0" step="0.01" placeholder="0,00" style="width:100px" onchange="updateItem(${item.id},'price',this.value)" oninput="updateItem(${item.id},'price',this.value)" /></td>
+      <td style="font-weight:600">${fmt(item.qty * item.price)}</td>
+      <td><button class="btn-del" onclick="removeItem(${item.id})">×</button></td>
+    </tr>
+  `).join('');
+  updateTotals();
+}
+
+function updateItem(id, field, val) {
+  const item = items.find(i => i.id === id);
+  if (!item) return;
+  item[field] = field === 'desc' ? val : parseFloat(val) || 0;
+  updateTotals();
+  // re-render subtotal only
+  const rows = document.querySelectorAll('#items-body tr');
+  items.forEach((it, idx) => {
+    if (it.id === id && rows[idx]) {
+      const cells = rows[idx].querySelectorAll('td');
+      if (cells[3]) cells[3].textContent = fmt(it.qty * it.price);
+    }
+  });
+}
+
+function updateTotals() {
+  const base = items.reduce((s, i) => s + i.qty * i.price, 0);
+  const ivaPct = parseInt(document.getElementById('pres-iva').value);
+  const iva = base * ivaPct / 100;
+  document.getElementById('t-base').textContent = fmt(base);
+  document.getElementById('t-iva').textContent = fmt(iva);
+  document.getElementById('t-total').textContent = fmt(base + iva);
+  document.getElementById('t-iva-pct').textContent = ivaPct;
+}
+
+function fmt(n) {
+  return Number(n).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+}
+
+// ── GENERATE PDF ──
+function generatePDF() {
+  const bizName = document.getElementById('biz-name').value || 'Tu Empresa';
+  const bizNif = document.getElementById('biz-nif').value || '';
+  const bizPhone = document.getElementById('biz-phone').value || '';
+  const bizEmail = document.getElementById('biz-email').value || '';
+  const bizAddress = document.getElementById('biz-address').value || '';
+  const cliName = document.getElementById('cli-name').value || 'Cliente';
+  const cliPhone = document.getElementById('cli-phone').value || '';
+  const cliAddress = document.getElementById('cli-address').value || '';
+  const presNum = document.getElementById('pres-num').value || '001';
+  const presDate = document.getElementById('pres-date').value;
+  const presValid = document.getElementById('pres-valid').value;
+  const presDesc = document.getElementById('pres-desc').value || '';
+  const presNotes = document.getElementById('pres-notes').value || '';
+  const ivaPct = parseInt(document.getElementById('pres-iva').value);
+  const base = items.reduce((s, i) => s + i.qty * i.price, 0);
+  const iva = base * ivaPct / 100;
+  const total = base + iva;
+  const dateFormatted = presDate ? new Date(presDate + 'T12:00:00').toLocaleDateString('es-ES', { day:'2-digit', month:'long', year:'numeric' }) : new Date().toLocaleDateString('es-ES', { day:'2-digit', month:'long', year:'numeric' });
+
+  const rows = items.filter(i => i.desc || i.price > 0).map(i => `
+    <tr>
+      <td>${i.desc || '-'}</td>
+      <td style="text-align:center">${i.qty}</td>
+      <td style="text-align:right">${fmt(i.price)}</td>
+      <td>${fmt(i.qty * i.price)}</td>
+    </tr>
+  `).join('');
+
+  const html = `
+    <div class="pdf-header">
+      <div>
+        <div class="pdf-logo">${bizName}<small>${bizAddress || ''}</small></div>
+        ${bizNif ? `<p style="font-size:13px;color:var(--muted);margin-top:4px">NIF: ${bizNif}</p>` : ''}
+        ${bizPhone ? `<p style="font-size:13px;color:var(--muted)">Tel: ${bizPhone}</p>` : ''}
+        ${bizEmail ? `<p style="font-size:13px;color:var(--accent)">${bizEmail}</p>` : ''}
+      </div>
+      <div class="pdf-info">
+        <h2>PRESUPUESTO</h2>
+        <p>Nº ${presNum}</p>
+        <p>${dateFormatted}</p>
+        <p style="color:var(--accent);font-weight:600">Válido: ${presValid}</p>
+      </div>
+    </div>
+    <div class="pdf-parties">
+      <div class="pdf-party">
+        <h4>Emisor</h4>
+        <p><strong>${bizName}</strong><br>${bizAddress || ''}<br>${bizNif ? 'NIF: ' + bizNif : ''}</p>
+      </div>
+      <div class="pdf-party">
+        <h4>Cliente</h4>
+        <p><strong>${cliName}</strong><br>${cliAddress || ''}<br>${cliPhone ? 'Tel: ' + cliPhone : ''}</p>
+      </div>
+    </div>
+    ${presDesc ? `<p style="font-size:14px;color:#555;margin-bottom:24px;padding:16px;background:var(--light);border-radius:8px;line-height:1.7"><strong>Descripción:</strong> ${presDesc}</p>` : ''}
+    <table class="pdf-table">
+      <thead><tr><th style="width:45%">Descripción</th><th style="width:10%;text-align:center">Uds.</th><th style="width:20%;text-align:right">Precio/ud</th><th style="width:25%;text-align:right">Subtotal</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="pdf-totals">
+      <div class="pdf-total-row"><span>Base imponible</span><span>${fmt(base)}</span></div>
+      <div class="pdf-total-row"><span>IVA (${ivaPct}%)</span><span>${fmt(iva)}</span></div>
+      <div class="pdf-total-row final"><span>TOTAL</span><span>${fmt(total)}</span></div>
+    </div>
+    ${presNotes ? `<div class="pdf-notes"><h4>Condiciones y notas</h4><p>${presNotes}</p></div>` : ''}
+    <div class="pdf-footer">
+      <span>Generado con PresupuestoRápido · presupuesterapido.es</span>
+      <span>Este presupuesto tiene validez de ${presValid} desde la fecha de emisión</span>
+    </div>
+  `;
+
+  document.getElementById('pdf-content').innerHTML = html;
+  document.getElementById('pdf-preview').classList.add('active');
+  document.getElementById('preview-empty').style.display = 'none';
+  switchTab('preview');
+  notify('PDF generado correctamente ✓');
+}
+
+// ── WHATSAPP ──
+function sendWhatsApp() {
+  const cliName = document.getElementById('cli-name').value || 'cliente';
+  const bizName = document.getElementById('biz-name').value || 'nosotros';
+  const total = items.reduce((s, i) => s + i.qty * i.price, 0);
+  const ivaPct = parseInt(document.getElementById('pres-iva').value);
+  const totalConIva = total * (1 + ivaPct/100);
+  const phone = document.getElementById('cli-phone').value.replace(/\D/g, '');
+  const msg = encodeURIComponent(`Hola ${cliName}, te adjunto el presupuesto de ${bizName}.\n\n💰 TOTAL: ${fmt(totalConIva)}\n\nPor favor confírmame si lo aceptas. Muchas gracias.`);
+  const url = phone ? `https://wa.me/34${phone}?text=${msg}` : `https://wa.me/?text=${msg}`;
+  window.open(url, '_blank');
+}
+
+// ── AI ──
+async function askAI() {
+  const input = document.getElementById('ai-input');
+  const resp = document.getElementById('ai-response');
+  const question = input.value.trim();
+  if (!question) return;
+  resp.className = 'ai-response visible';
+  resp.innerHTML = '<div class="ai-thinking">Pensando <div class="dot-anim"><span>.</span><span>.</span><span>.</span></div></div>';
+
+  try {
+    const response = await fetch("/.netlify/functions/claude", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        system: "Eres un asistente experto en ayudar a autónomos de oficios en España (fontaneros, electricistas, pintores, carpinteros, etc.) a crear presupuestos profesionales. Das consejos concretos, prácticos y en español. Tus respuestas son concisas (máximo 150 palabras) y útiles. Cuando sugieras precios, usa rangos realistas del mercado español 2024.",
+        messages: [{ role: "user", content: question }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content?.[0]?.text || "Lo siento, no pude procesar la consulta. Inténtalo de nuevo.";
+    resp.innerHTML = `<p style="color:var(--brand)">${text.replace(/\n/g, '<br>')}</p>`;
+  } catch (e) {
+    resp.innerHTML = '<p style="color:var(--muted)">El asistente IA requiere conexión. Inténtalo en unos segundos.</p>';
+  }
+  input.value = '';
+}
+
+document.getElementById('ai-input').addEventListener('keypress', e => {
+  if (e.key === 'Enter') askAI();
+});
+
+// ── UTILS ──
+function clearForm() {
+  if (!confirm('¿Seguro que quieres limpiar el formulario?')) return;
+  ['biz-name','biz-nif','biz-phone','biz-email','biz-address','cli-name','cli-phone','cli-address','pres-desc','pres-notes'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  items = [];
+  addItem(); addItem(); addItem();
+  notify('Formulario limpiado');
+}
+
+function notify(msg) {
+  const n = document.getElementById('notif');
+  document.getElementById('notif-text').textContent = msg;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  const a = el.nextElementSibling;
+  a.classList.toggle('open');
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
