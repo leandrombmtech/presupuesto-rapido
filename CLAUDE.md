@@ -86,11 +86,12 @@ Añade al final del archivo CLAUDE.md, sin borrar nada, el siguiente contenido:
 - Generador de PDF profesional
 - Envío por WhatsApp
 - Stripe configurado con Payment Link y 14 días de prueba
-- GitHub CI/CD con Netlify auto-deploy
+- Migrado de Netlify a Vercel (créditos Netlify agotados)
 - SSL activo
 
 ### Pendiente ⏳ en orden de prioridad
-1. Supabase Auth — login y registro de usuarios
+1. Ajustar prompt de la IA — nunca sugerir Excel/Word/otras herramientas, siempre enfocado en la web; mejorar formato de respuestas
+2. Supabase Auth — login y registro de usuarios
 2. Base de datos — tablas: users, subscriptions, budgets
 3. Limitar plan gratuito a 3 presupuestos/mes
 4. Marca de agua en PDFs del plan gratuito
