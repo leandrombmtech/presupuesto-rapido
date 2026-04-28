@@ -1,0 +1,19 @@
+# Secretos y configuración local — nunca a GitHub
+.env
+.env.local
+.env.*.local
+.claude/settings.local.json
+
+# Vercel
+.vercel/
+
+# Dependencias
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
