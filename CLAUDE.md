@@ -146,3 +146,19 @@ Añade al final del archivo CLAUDE.md, sin borrar nada, el siguiente contenido:
 - Web funcionando en presupuestorapido.pro con IA, PDF y Stripe
 - Próximo paso: implementar Supabase Auth (login/registro)
 - Al inicio de cada sesión revisar este archivo y preguntar qué toca hacer
+
+### Sesión 2 — 28 Abril 2026
+#### Completado ✅
+- Convertido documentacion_maestra_presupuestorapido_v2.docx a docs/PROYECTO.md (fuente de verdad completa)
+- Añadida referencia a docs/PROYECTO.md en CLAUDE.md para que se lea al inicio de cada sesión
+- Auto-commit reactivado con [skip ci] para no disparar deploy en Vercel en cada guardado
+- Creado .gitignore (faltaba — ahora protege .env y credenciales)
+- Creado .claude/settings.local.json con credenciales de Supabase (gitignoreado, solo en local)
+- Proyecto Supabase creado: rylbibqoxpzggmxwazde.supabase.co (región: West EU Ireland)
+- MCP de Supabase configurado en settings.local.json
+
+#### Próximo paso ⏳
+- Reiniciar Claude Code para cargar el MCP de Supabase
+- Verificar que el MCP está activo
+- Ejecutar el schema SQL completo en Supabase (está en docs/PROYECTO.md sección 5.1)
+- Implementar modal de login/registro en index.html (Día 3 del roadmap)
