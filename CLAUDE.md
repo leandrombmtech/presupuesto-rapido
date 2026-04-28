@@ -126,6 +126,11 @@ Añade al final del archivo CLAUDE.md, sin borrar nada, el siguiente contenido:
 - Mantener todo en un solo index.html hasta que la complejidad lo justifique
 - Cada función nueva va en netlify/functions/ como archivo separado
 
+## Despliegue a producción
+- Los commits automáticos usan [skip ci] para no disparar deploy en Vercel
+- Para desplegar a producción, Leandro ejecuta manualmente: vercel --prod
+- Solo desplegar cuando un bloque de funcionalidad esté completo y probado
+
 ## Protocolo de trabajo
 - Al inicio de cada sesión: leer CLAUDE.md y resumir estado actual + proponer siguiente paso
 - Al final de cada sesión: actualizar CLAUDE.md con lo hecho, lo pendiente y decisiones tomadas
