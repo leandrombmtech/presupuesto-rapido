@@ -1,5 +1,8 @@
 # CLAUDE.md
 
+## Documentación completa del proyecto
+Antes de responder cualquier pregunta, lee siempre docs/PROYECTO.md — es la fuente de verdad del proyecto con stack, schema SQL, roadmap, precios, marketing y todo el contexto.
+
 
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -13,6 +16,7 @@ Responde siempre en español de España. Nunca uses inglés salvo para nombres t
 - Es el fundador y único desarrollador de PresupuestoRápido
 - No tiene experiencia previa en programación pero aprende rápido
 - Prefiere explicaciones paso a paso con contexto de por qué se hace cada cosa
+- Al inicio de cada sesión saluda a Leandro con una frase divertida diferente cada vez relacionada con startups, código o autónomos españoles
 
 ## What this is
 
@@ -86,24 +90,30 @@ Añade al final del archivo CLAUDE.md, sin borrar nada, el siguiente contenido:
 - Generador de PDF profesional
 - Envío por WhatsApp
 - Stripe configurado con Payment Link y 14 días de prueba
-- Migrado de Netlify a Vercel (créditos Netlify agotados)
-- SSL activo
+- Migrado de Netlify a Vercel (créditos Netlify agotados por auto-commit)
+- Dominio apuntado a Vercel via Porkbun (A @ → 216.198.79.1)
+- SSL activo en Vercel
+- Proyecto Supabase creado (pendiente de integrar en código)
+- Auto-commit eliminado — commits manuales
 
 ### Pendiente ⏳ en orden de prioridad
-1. Ajustar prompt de la IA — nunca sugerir Excel/Word/otras herramientas, siempre enfocado en la web; mejorar formato de respuestas
-2. Supabase Auth — login y registro de usuarios
-2. Base de datos — tablas: users, subscriptions, budgets
-3. Limitar plan gratuito a 3 presupuestos/mes
-4. Marca de agua en PDFs del plan gratuito
-5. Stripe webhooks — conectar pago con acceso Pro
-6. Panel de usuario — historial de presupuestos
-7. Política de privacidad y términos legales
-8. SEO básico — meta tags, sitemap, Search Console
-9. Marketing — grupos Facebook, TikTok, email
+1. Conectar Supabase MCP a Claude Code
+2. Conectar Vercel MCP a Claude Code
+3. Implementar login con Supabase Auth
+4. Ajustar prompt de la IA — nunca sugerir Excel/Word/otras herramientas, siempre enfocado en la web; mejorar formato de respuestas
+5. Supabase Auth — login y registro de usuarios
+6. Base de datos — tablas: users, subscriptions, budgets
+7. Limitar plan gratuito a 3 presupuestos/mes
+8. Marca de agua en PDFs del plan gratuito
+9. Stripe webhooks — conectar pago con acceso Pro
+10. Panel de usuario — historial de presupuestos
+11. Política de privacidad y términos legales
+12. SEO básico — meta tags, sitemap, Search Console
+13. Marketing — grupos Facebook, TikTok, email
 
 ## Stack objetivo completo
 - Frontend: HTML/CSS/JS vanilla (index.html)
-- Functions: netlify/functions/ (claude.js, auth.js, stripe-hook.js, user.js)
+- Functions: api/ (claude.js, auth.js, stripe-hook.js, user.js) — formato Vercel
 - Base de datos: Supabase (PostgreSQL)
 - Auth: Supabase Auth
 - Pagos: Stripe + webhooks
